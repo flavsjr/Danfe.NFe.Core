@@ -1,5 +1,5 @@
 using System.Drawing;
-using PdfSharpCore.Drawing;
+using PdfSharp.Drawing;
 using Danfe.NFe.Core.Enumeracoes;
 using Danfe.NFe.Core.Graphics;
 using Danfe.NFe.Core.Modelo;

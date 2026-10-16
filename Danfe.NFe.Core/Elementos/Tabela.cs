@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using PdfSharpCore.Drawing;
+using PdfSharp.Drawing;
 using Danfe.NFe.Core.Enumeracoes;
 using Danfe.NFe.Core.Graphics;
 using Danfe.NFe.Core.Tools.Extensions;

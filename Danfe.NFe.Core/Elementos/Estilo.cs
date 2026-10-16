@@ -1,4 +1,4 @@
-using PdfSharpCore.Drawing;
+using PdfSharp.Drawing;
 using Danfe.NFe.Core.Graphics;
 
 namespace Danfe.NFe.Core.Elementos
@@ -40,8 +40,8 @@ namespace Danfe.NFe.Core.Elementos
             FonteTamanhoMinimo = 5.75F;
         }
 
-        public Fonte CriarFonteRegular(float emSize) => new Fonte(FamiliaFonte, XFontStyle.Regular, emSize);
-        public Fonte CriarFonteNegrito(float emSize) => new Fonte(FamiliaFonte, XFontStyle.Bold, emSize);
-        public Fonte CriarFonteItalico(float emSize) => new Fonte(FamiliaFonte, XFontStyle.Italic, emSize);
+        public Fonte CriarFonteRegular(float emSize) => new Fonte(FamiliaFonte, XFontStyleEx.Regular, emSize);
+        public Fonte CriarFonteNegrito(float emSize) => new Fonte(FamiliaFonte, XFontStyleEx.Bold, emSize);
+        public Fonte CriarFonteItalico(float emSize) => new Fonte(FamiliaFonte, XFontStyleEx.Italic, emSize);
     }
 }
