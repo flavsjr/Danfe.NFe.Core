@@ -25,7 +25,6 @@ namespace DanfeNFeCore.WebService.Controllers
             {
                 using (var danfe = new DanfeDoc(modelo))
                 {
-                    danfe.ViewModel.DefinirTextoCreditos("Desenvolvido por Bruno Moreno / github.com/bsmoreno2910");
                     danfe.Gerar();
                     var bytesPdf = danfe.ObterPdfBytes(pdfStream);
                     return File(bytesPdf, "Application/pdf", $"{modelo.ChaveAcesso}.pdf");

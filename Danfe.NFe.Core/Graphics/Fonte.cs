@@ -1,12 +1,12 @@
 using System;
-using PdfSharpCore.Drawing;
-using PdfSharpCore.Pdf;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using Danfe.NFe.Core.Tools.Extensions;
 
 namespace Danfe.NFe.Core.Graphics
 {
     /// <summary>
-    /// Define uma fonte (XFont do PdfSharpCore) e um tamanho em pontos.
+    /// Define uma fonte (XFont do PDFsharp) e um tamanho em pontos.
     /// A fonte é usada para desenho e medição. O tamanho aqui é o mesmo
     /// passado ao XFont (em pontos), e as medidas de altura/largura são
     /// convertidas de pontos para milímetros para uso interno pelo DANFE.
@@ -26,15 +26,15 @@ namespace Danfe.NFe.Core.Graphics
         /// <summary>
         /// Estilo da fonte (Regular, Bold, Italic...).
         /// </summary>
-        public XFontStyle EstiloFonte { get; private set; }
+        public XFontStyleEx EstiloFonte { get; private set; }
 
         /// <summary>
-        /// XFont usado internamente pelo PdfSharpCore.
+        /// XFont usado internamente pelo PDFsharp.
         /// Recriado automaticamente quando <see cref="Tamanho"/> é alterado.
         /// </summary>
         public XFont FonteInterna => _FonteInterna;
 
-        public Fonte(string familia, XFontStyle estilo, float tamanho)
+        public Fonte(string familia, XFontStyleEx estilo, float tamanho)
         {
             if (string.IsNullOrWhiteSpace(familia)) throw new ArgumentNullException(nameof(familia));
             FamiliaFonte = familia;

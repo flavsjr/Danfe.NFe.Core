@@ -31,7 +31,7 @@ namespace Danfe.NFe.Core.Tests
                 danfe.Salvar(outPdfFilePath);
             }
         }
-        public void TestXml(String xmlPath)
+        public int TestXml(String xmlPath)
         {
             var outPdfFilePath = Path.Combine(OutputDirectory, Path.GetFileNameWithoutExtension(xmlPath) + ".pdf");
             var model = DanfeViewModelCreator.CriarDeArquivoXml(Path.Combine(InputXmlDirectoryPrefix, xmlPath));
@@ -39,6 +39,7 @@ namespace Danfe.NFe.Core.Tests
             {
                 danfe.Gerar();
                 danfe.Salvar(outPdfFilePath);
+                return danfe.PdfDocument.PageCount;
             }
         }
 
@@ -56,5 +57,44 @@ namespace Danfe.NFe.Core.Tests
 
         [TestMethod]
         public void v4_ComLocalRetirada() => TestXml("v4.00/v4_ComLocalRetirada.xml");
+
+        [TestMethod]
+        public void v4_Retrato() => Assert.AreEqual(1, TestXml("v4.00/v4_Retrato.xml"));
+
+        [TestMethod]
+        public void v4_Paisagem() => Assert.AreEqual(1, TestXml("v4.00/v4_Paisagem.xml"));
+
+        [TestMethod]
+        public void v4_MuitosItens() => Assert.IsTrue(TestXml("v4.00/v4_MuitosItens.xml") > 1);
+
+        [TestMethod]
+        public void v4_MuitosItensPaisagem() => Assert.IsTrue(TestXml("v4.00/v4_MuitosItensPaisagem.xml") > 1);
+
+        [TestMethod]
+        public void v4_ComLocalEntregaRetirada() => TestXml("v4.00/v4_ComLocalEntregaRetirada.xml");
+
+        [TestMethod]
+        public void v4_Issqn() => TestXml("v4.00/v4_Issqn.xml");
+
+        [TestMethod]
+        public void v4_InfCplLonga() => TestXml("v4.00/v4_InfCplLonga.xml");
+
+        [TestMethod]
+        public void v4_SemVTotTrib() => TestXml("v4.00/v4_SemVTotTrib.xml");
+
+        [TestMethod]
+        public void v4_Homologacao() => TestXml("v4.00/v4_Homologacao.xml");
+
+        [TestMethod]
+        public void v4_ContingenciaSvcAn() => TestXml("v4.00/v4_ContingenciaSvcAn.xml");
+
+        [TestMethod]
+        public void v4_VTotTribPresenteEAusente()
+        {
+            var com = DanfeViewModelCreator.CriarDeArquivoXml(Path.Combine(InputXmlDirectoryPrefix, "v4.00/v4_Retrato.xml"));
+            var sem = DanfeViewModelCreator.CriarDeArquivoXml(Path.Combine(InputXmlDirectoryPrefix, "v4.00/v4_SemVTotTrib.xml"));
+            Assert.IsNotNull(com.CalculoImposto.ValorAproximadoTributos);
+            Assert.IsNull(sem.CalculoImposto.ValorAproximadoTributos);
+        }
     }
 }

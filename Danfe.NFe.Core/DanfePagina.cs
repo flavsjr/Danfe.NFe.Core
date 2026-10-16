@@ -1,9 +1,9 @@
 using System;
 using System.Drawing;
 using System.Linq;
-using PdfSharpCore;
-using PdfSharpCore.Drawing;
-using PdfSharpCore.Pdf;
+using PdfSharp;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using Danfe.NFe.Core.Blocos;
 using Danfe.NFe.Core.Elementos;
 using Danfe.NFe.Core.Enumeracoes;
@@ -44,7 +44,7 @@ namespace Danfe.NFe.Core
                 PdfPage.Orientation = PageOrientation.Landscape;
             }
 
-            // PdfSharpCore cria o XGraphics ancorado à página; trabalhamos em pontos.
+            // PDFsharp cria o XGraphics ancorado à página; trabalhamos em pontos.
             XGraphics = XGraphics.FromPdfPage(PdfPage);
             Gfx = new Gfx(XGraphics);
 
@@ -91,7 +91,7 @@ namespace Danfe.NFe.Core
                 // (X, Y, H, W) no mesmo canto superior-esquerdo, com texto lendo de
                 // BAIXO para CIMA (quando a folha está em paisagem). Para isso, o
                 // pivot é (X + W/2, Y + W/2) e o ângulo é -90° no sistema Y-down do
-                // PdfSharpCore (que corresponde a uma rotação visual anti-horária).
+                // PDFsharp (que corresponde a uma rotação visual anti-horária).
                 //
                 // A fórmula antiga (pivot (0, W+X+Y) com +90) funcionava no PDFClown
                 // porque o sistema de coordenadas + composição de CTM eram diferentes.

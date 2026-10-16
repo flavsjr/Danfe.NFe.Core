@@ -1,18 +1,17 @@
-using PdfSharpCore.Fonts;
-using PdfSharpCore.Utils;
+using System;
+using PdfSharp.Fonts;
 
 namespace Danfe.NFe.Core.Graphics
 {
     /// <summary>
-    /// Inicializa o FontResolver do PdfSharpCore uma única vez.
-    /// O FontResolver padrão do PdfSharpCore (<see cref="FontResolver"/>) lê fontes
-    /// do sistema operacional em Windows, Linux e macOS — mantendo o DANFE
-    /// funcional em qualquer ambiente .NET Core/NET 8.
+    /// Registra o <see cref="DanfeFontResolver"/> como <see cref="GlobalFontSettings.FallbackFontResolver"/>
+    /// do PDFsharp uma única vez. Como fallback, ele só é consultado quando o
+    /// <see cref="GlobalFontSettings.FontResolver"/> do consumidor (se houver) não resolve a fonte.
     /// </summary>
     internal static class DanfeFontResolverSetup
     {
         private static readonly object _Lock = new object();
-        private static bool _Initialized;
+        private static volatile bool _Initialized;
 
         /// <summary>
         /// Garante que o FontResolver global está configurado. Idempotente e thread-safe.
@@ -25,10 +24,17 @@ namespace Danfe.NFe.Core.Graphics
             {
                 if (_Initialized) return;
 
-                // Se o consumidor já definiu um FontResolver customizado, respeitar.
-                if (GlobalFontSettings.FontResolver == null)
+                // Se o consumidor já definiu um FallbackFontResolver, respeitar.
+                if (GlobalFontSettings.FallbackFontResolver == null)
                 {
-                    GlobalFontSettings.FontResolver = new FontResolver();
+                    try
+                    {
+                        GlobalFontSettings.FallbackFontResolver = new DanfeFontResolver();
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        // O PDFsharp não aceita trocar resolver depois que alguma fonte já foi usada.
+                    }
                 }
 
                 _Initialized = true;

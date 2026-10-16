@@ -54,6 +54,7 @@ namespace Danfe.NFe.Core.Tools
         /// </summary>
         /// <param name="endereco"></param>
         /// <param name="numero"></param>
+        /// <param name="complemento"></param>
         /// <returns></returns>
         public static string FormatarEnderecoLinha1(string endereco, int? numero, string complemento = null)
         {
@@ -66,6 +67,7 @@ namespace Danfe.NFe.Core.Tools
         /// </summary>
         /// <param name="endereco"></param>
         /// <param name="numero"></param>
+        /// <param name="complemento"></param>
         /// <returns></returns>
         public static string FormatarEnderecoLinha1(string endereco, string numero = null, string complemento = null)
         {

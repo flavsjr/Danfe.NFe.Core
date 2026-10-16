@@ -1,20 +1,20 @@
 using System;
 using System.Drawing;
-using PdfSharpCore.Drawing;
+using PdfSharp.Drawing;
 using Danfe.NFe.Core.Enumeracoes;
 using Danfe.NFe.Core.Tools.Extensions;
 
 namespace Danfe.NFe.Core.Graphics
 {
     /// <summary>
-    /// Fachada de desenho sobre XGraphics (PdfSharpCore).
+    /// Fachada de desenho sobre XGraphics (PDFsharp).
     /// Todas as coordenadas recebidas pelo Gfx são em milímetros;
     /// internamente convertemos para pontos antes de delegar ao XGraphics.
     /// </summary>
     internal class Gfx
     {
         /// <summary>
-        /// XGraphics do PdfSharpCore associado à página.
+        /// XGraphics do PDFsharp associado à página.
         /// </summary>
         public XGraphics XGraphics { get; private set; }
 
@@ -49,7 +49,7 @@ namespace Danfe.NFe.Core.Graphics
 
         /// <summary>
         /// Desenha uma string dentro de um retângulo (em mm), aplicando alinhamento
-        /// horizontal e vertical. O alinhamento horizontal é delegado ao PdfSharpCore
+        /// horizontal e vertical. O alinhamento horizontal é delegado ao PDFsharp
         /// via <see cref="XStringFormat"/> — isso evita erros de centralização que
         /// surgiriam ao medir a largura em um contexto separado (CreateMeasureContext)
         /// e passá-la à <c>DrawString</c>, pois a fonte usada na medição pode
@@ -256,9 +256,9 @@ namespace Danfe.NFe.Core.Graphics
 
         /// <summary>
         /// Rotaciona o sistema de coordenadas em graus em torno de um ponto (em mm).
-        /// Delega para <see cref="XGraphics.RotateAtTransform"/> que aplica a sequência
+        /// Delega para <see cref="XGraphics.RotateAtTransform(double, XPoint)"/> que aplica a sequência
         /// correta de transformações (T · R · T⁻¹) respeitando a ordem Prepend interna
-        /// do PdfSharpCore. Compor Translate/Rotate/Translate manualmente não funciona
+        /// do PDFsharp. Compor Translate/Rotate/Translate manualmente não funciona
         /// porque cada chamada é prepended, invertendo a ordem efetiva na CTM.
         /// </summary>
         public void RotateTransform(double angleDegrees, PointF centerMm)
@@ -278,7 +278,7 @@ namespace Danfe.NFe.Core.Graphics
         }
 
         // Mantidos como no-op para manter a assinatura usada pelo código legado.
-        // No PdfSharpCore o desenho é imediato — não há buffer explícito.
+        // No PDFsharp o desenho é imediato — não há buffer explícito.
         public void Stroke() { /* no-op: desenho é imediato no XGraphics */ }
         public void Flush() { /* no-op: desenho é imediato no XGraphics */ }
         public void Fill() { /* no-op: uso DrawRectangle(brush, ...) via FillRectangle */ }

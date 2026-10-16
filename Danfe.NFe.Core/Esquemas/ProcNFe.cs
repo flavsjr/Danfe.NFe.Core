@@ -65,7 +65,7 @@ namespace Danfe.NFe.Core.Esquemas
 
 
     /// <summary>
-    /// Tipo Protocolo de status resultado do processamento da NF-e<
+    /// Tipo Protocolo de status resultado do processamento da NF-e
     /// </summary>
     [Serializable]
     [XmlType(Namespace = Namespaces.NFe)]

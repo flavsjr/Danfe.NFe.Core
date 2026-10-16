@@ -1,4 +1,4 @@
-using PdfSharpCore.Drawing;
+using PdfSharp.Drawing;
 
 namespace Danfe.NFe.Core.Graphics
 {

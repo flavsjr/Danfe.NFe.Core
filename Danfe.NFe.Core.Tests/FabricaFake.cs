@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using Danfe.NFe.Core.Modelo;
 
@@ -11,31 +9,16 @@ namespace Danfe.NFe.Core.Tests
     {
         public const double v = 1234.56;
 
-        public static MemoryStream FakeLogo(int w, int h)
-        {
-            MemoryStream ms = new MemoryStream();
-            using (Bitmap bmp = new Bitmap(w, h))
-            using (var graph = System.Drawing.Graphics.FromImage(bmp))
-            {
-                Rectangle ImageSize = new Rectangle(0, 0, w, h);
-                graph.FillRectangle(Brushes.Cyan, ImageSize);
-                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-
-            ms.Position = 0;
-            return ms;
-        }
-
         public static LocalEntregaRetiradaViewModel LocalEntregaRetiradaFake()
         {
             return new LocalEntregaRetiradaViewModel()
             {
-                NomeRazaoSocial = "Umbrella Corp",
-                Endereco = "Rua João Augusto Morais, 267",
-                InscricaoEstadual = "361499373647",
-                Bairro = "Vila Doutor Eiras",
-                CnpjCpf = "22257735000138",
-                Cep = "08010150",
+                NomeRazaoSocial = "Local Fictício Ltda",
+                Endereco = "Rua Fictícia do Local, 200",
+                InscricaoEstadual = "333333333333",
+                Bairro = "Bairro Fictício",
+                CnpjCpf = "33333333333333",
+                Cep = "00000000",
                 Municipio = "São Paulo",
                 Uf = "SP",
                 Telefone = "1012345678"
@@ -124,7 +107,7 @@ namespace Danfe.NFe.Core.Tests
                 },
                 Transportadora = new TransportadoraViewModel()
                 {
-                    RazaoSocial = "Correios",
+                    RazaoSocial = "Transportadora Fictícia",
                     CnpjCpf = new String('8', 14),
                     VeiculoUf = "RS",
                     QuantidadeVolumes = 123.1234,
