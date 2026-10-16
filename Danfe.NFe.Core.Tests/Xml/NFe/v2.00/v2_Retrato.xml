@@ -1,6 +1,6 @@
 <nfeProc versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
     <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
-        <infNFe versao="2.00" Id="NFe35140222257735000138552443253123071430458314">
+        <infNFe versao="2.00" Id="NFe35140222222222222222552443253123071430458314">
             <ide>
                 <cUF>43</cUF>
                 <cNF>40757428</cNF>
@@ -21,45 +21,45 @@
                 <verProc>ABC</verProc>
             </ide>
             <emit>
-                <CNPJ>22257735000138</CNPJ>
-                <xNome>Umbrella Corp</xNome>
-                <xFant>Umbrella</xFant>
+                <CNPJ>22222222222222</CNPJ>
+                <xNome>DESTINATARIO FICTICIO LTDA</xNome>
+                <xFant>DESTINATARIO FICTICIO</xFant>
                 <enderEmit>
-                    <xLgr>Rua João Augusto Morais</xLgr>
-                    <nro>300</nro>
-                    <xBairro>Siqueira Campos</xBairro>
+                    <xLgr>RUA FICTÍCIA DO DESTINATÁRIO</xLgr>
+                    <nro>100</nro>
+                    <xBairro>BAIRRO FICTÍCIO</xBairro>
                     <cMun>3550308</cMun>
-                    <xMun>São Paulo</xMun>
+                    <xMun>MUNICÍPIO FICTÍCIO</xMun>
                     <UF>SP</UF>
-                    <CEP>08010150</CEP>
+                    <CEP>00000000</CEP>
                     <cPais>1058</cPais>
                     <xPais>Brasil</xPais>
                 </enderEmit>
-                <IE>361499373647</IE>
+                <IE>222222222222</IE>
                 <CRT>3</CRT>
             </emit>
             <dest>
-                <CNPJ>64542918000145</CNPJ>
-                <xNome>Cyberdyne Systems Corp.</xNome>
+                <CNPJ>11111111111111</CNPJ>
+                <xNome>EMITENTE FICTICIO LTDA</xNome>
                 <enderDest>
-                    <xLgr>Rua Deputado Carlos Correia</xLgr>
+                    <xLgr>RUA FICTICIA DO EMITENTE</xLgr>
                     <nro>S/N</nro>
-                    <xBairro>Siqueira Campos</xBairro>
+                    <xBairro>BAIRRO FICTÍCIO</xBairro>
                     <cMun>3550308</cMun>
-                    <xMun>Aracaju</xMun>
+                    <xMun>MUNICÍPIO FICTÍCIO</xMun>
                     <UF>SE</UF>
-                    <CEP>49075976</CEP>
+                    <CEP>00000000</CEP>
                     <cPais>1058</cPais>
                     <xPais>BRASIL</xPais>
-                    <fone>0112345678</fone>
+                    <fone>0000000000</fone>
                 </enderDest>
-                <IE>270913586892</IE>
+                <IE>111111111111</IE>
             </dest>
             <det nItem="1">
                 <prod>
                     <cProd>000000000028266841</cProd>
-                    <cEAN>714832083003</cEAN>
-                    <xProd>Terminator Modelo T-1000</xProd>
+                    <cEAN>SEM GTIN</cEAN>
+                    <xProd>PRODUTO FICTÍCIO 1</xProd>
                     <NCM>52665586</NCM>
                     <CFOP>5929</CFOP>
                     <uCom>PC</uCom>
@@ -114,7 +114,7 @@
             <det nItem="2">
                 <prod>
                     <cProd>F0003657</cProd>
-                    <cEAN>099218911957</cEAN>
+                    <cEAN>SEM GTIN</cEAN>
                     <xProd>Produto Número 2</xProd>
                     <NCM>60664500</NCM>
                     <CFOP>5929</CFOP>
@@ -201,7 +201,7 @@
             <SignedInfo>
                 <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
                 <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
-                <Reference URI="#NFe35140222257735000138552443253123071430458314">
+                <Reference URI="#NFe35140222222222222222552443253123071430458314">
                     <Transforms>
                         <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
                         <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
@@ -219,12 +219,12 @@
         </Signature>
     </NFe>
     <protNFe versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
-        <infProt Id="ID812978964386859">
+        <infProt Id="ID100000000000001">
             <tpAmb>1</tpAmb>
             <verAplic>RS28322440583679</verAplic>
-            <chNFe>35140222257735000138552443253123071430458314</chNFe>
+            <chNFe>35140222222222222222552443253123071430458314</chNFe>
             <dhRecbto>2011-09-16T17:32:38</dhRecbto>
-            <nProt>812978964386859</nProt>
+            <nProt>100000000000001</nProt>
             <digVal>RGFuZmVTaGFycA==</digVal>
             <cStat>100</cStat>
             <xMotivo>Autorizado o uso da NF-e</xMotivo>

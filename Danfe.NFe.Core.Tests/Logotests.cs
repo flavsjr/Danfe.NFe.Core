@@ -56,5 +56,54 @@ namespace Danfe.NFe.Core.Tests
 
         [TestMethod]
         public void LogoVerticalPDF() => TestLogo("Logos/PDF/Vertical.pdf");
+
+        [TestMethod]
+        public void LogoQuadradoPNG() => TestLogo("Logos/PNG/Quadrado.png");
+
+        [TestMethod]
+        public void LogoHorizontalPNG() => TestLogo("Logos/PNG/Horizontal.png");
+
+        [TestMethod]
+        public void LogoVerticalPNG() => TestLogo("Logos/PNG/Vertical.png");
+
+        public void TestLogoStream(string logoPath, [CallerMemberName] string pdfName = null)
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.Orientacao = Orientacao.Retrato;
+            using (var d = new DanfeDoc(model))
+            {
+                // O stream é descartado antes de Gerar(): o logo não pode depender dele.
+                using (var stream = new MemoryStream(File.ReadAllBytes(logoPath)))
+                {
+                    if (logoPath.EndsWith(".pdf", StringComparison.InvariantCultureIgnoreCase))
+                        d.AdicionarLogoPdf(stream);
+                    else
+                        d.AdicionarLogoImagem(stream);
+                }
+
+                d.Gerar();
+                d.Salvar(Path.Combine(OutputDirectoryName, pdfName + ".pdf"));
+            }
+        }
+
+        [TestMethod]
+        public void LogoStreamJPG() => TestLogoStream("Logos/JPG/Quadrado.jpg");
+
+        [TestMethod]
+        public void LogoStreamPNG() => TestLogoStream("Logos/PNG/Quadrado.png");
+
+        [TestMethod]
+        public void LogoStreamPDF() => TestLogoStream("Logos/PDF/Quadrado.pdf");
+
+        [TestMethod]
+        public void LogoFormatoNaoSuportado()
+        {
+            // GIF 1x1: o ImageSharp aceitava, o PDFsharp não.
+            var gif = Convert.FromBase64String("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+            using (var d = new DanfeDoc(FabricaFake.DanfeViewModel_1()))
+            {
+                Assert.ThrowsException<NotSupportedException>(() => d.AdicionarLogoImagem(new MemoryStream(gif)));
+            }
+        }
     }
 }

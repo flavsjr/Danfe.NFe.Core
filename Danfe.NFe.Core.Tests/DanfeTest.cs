@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 using Danfe.NFe.Core;
 using Danfe.NFe.Core.Enumeracoes;
 
@@ -172,6 +173,23 @@ namespace Danfe.NFe.Core.Tests
             var d = new DanfeDoc(model);
             d.Gerar();
             d.SalvarTestePdf();
+        }
+
+        [TestMethod]
+        public void SalvarMaisDeUmaVez()
+        {
+            using (var d = new DanfeDoc(FabricaFake.DanfeViewModel_1()))
+            {
+                d.Gerar();
+                var primeiro = new MemoryStream();
+                d.Salvar(primeiro);
+                var segundo = d.ObterPdfBytes(new MemoryStream());
+
+                Assert.IsTrue(primeiro.Length > 0);
+                Assert.AreEqual(0, primeiro.Position);
+                Assert.IsTrue(segundo.Length > 0);
+                Assert.AreEqual(3, d.PdfDocument.PageCount);
+            }
         }
     }
 }
